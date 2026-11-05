@@ -1,0 +1,94 @@
+$ python3 etb_payshield/run_tests.py
+====================================================
+[*] Initializing Automated ETB PayShield Testing Loop...
+====================================================
+[*] Launching ETB PayShield System Infrastructure...
+[*] Waiting for gate to accept connections...
+[+] Gate is ready.
+
+[*] Automation Step A: Launching unauthorized simulation string...
+[?] Success: Gate actively blocked request with HTTP Status Code: 403
+
+[*] Automation Step A2: Authenticated injection payload (valid key, malicious body)...
+[?] Success: Gate blocked injection payload with HTTP Status Code: 403
+    Violations: ["injection_pattern in field 'note'"]
+
+[*] Automation Step B: Launching authenticated sandbox payload...
+[?] Success: Gate successfully passed telemetry array. Response: Gateway Verified (HTTP 200).
+
+[*] Automation Step C: Triggering out-of-band AI synthesis engine...
+[*] Processing threat telemetry through AppSec AI layer...
+[!] Ollama unavailable (URLError); using deterministic fallback derived from gate events.
+[+] Consolidated AI Compliance Report generated safely at: dashboard/ai_compliance_report.json
+
+====================================================
+[?] AUTOMATION PIPELINE RUN COMPLETE
+====================================================
+[*] Outputting final CISO compliance report matrix below:
+
+{
+    "telemetry": {
+        "transaction_id": "PAYPAL-TX-AUTO-777",
+        "amount": "149.00",
+        "status": "AUTOMATION_STREAMED",
+        "telemetry_class": "Zero-Click Ingestion Pipeline Active"
+    },
+    "gate_summary": {
+        "blocked_count": 2,
+        "verified_count": 1,
+        "blocked_reasons": [
+            "missing_or_invalid_api_key",
+            "payload_validation_failed"
+        ],
+        "stix_bundle": "dashboard/stix_bundle.json"
+    },
+    "ai_compliance_insights": {
+        "executive_summary": "2 request(s) blocked at the LayerZero gate (missing_or_invalid_api_key, payload_validation_failed); 1 legitimate transaction(s) verified, most recent PAYPAL-TX-AUTO-777 amount 149.00.",
+        "severity_level": "HIGH",
+        "impact_analysis": "Blocked requests never reached internal transaction state. Verified traffic passed API-key, JSON-shape, amount-range and injection-pattern checks at the boundary.",
+        "analysis_source": "deterministic_fallback_offline"
+    }
+}
+[*] STIX 2.1 bundle for the blocked event (dashboard/stix_bundle.json):
+
+{
+    "type": "bundle",
+    "id": "bundle--f5f9dcd6-cdb6-4ec9-9bce-de14d3f96ef5",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3be694d7-93e3-4597-aebb-fbafc2794a54",
+            "created": "2026-10-23T10:21:56.330Z",
+            "modified": "2026-10-23T10:21:56.330Z",
+            "name": "ETB LayerZero Intercept: Zero-Click Ingestion Pipeline Active",
+            "description": "Anomalous transactional telemetry structure neutralized at the system boundary gate.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[network-traffic:dst_port = 8080]",
+            "pattern_type": "stix",
+            "valid_from": "2026-10-23T10:21:56.330Z"
+        },
+        {
+            "type": "observed-data",
+            "spec_version": "2.1",
+            "id": "observed-data--cb95da70-f316-4935-8bd3-59066ecb5b26",
+            "created": "2026-10-23T10:21:56.330Z",
+            "modified": "2026-10-23T10:21:56.330Z",
+            "first_observed": "2026-10-23T10:21:56.330Z",
+            "last_observed": "2026-10-23T10:21:56.330Z",
+            "number_observed": 1,
+            "objects": {
+                "0": {
+                    "type": "file",
+                    "name": "raw_transaction_payload.json",
+                    "hashes": {
+                        "SHA-256": "a86ae89d29c5c0bc473895cbc9ccc628a6919e027edd2a497a7c94aca54e335b"
+                    }
+                }
+            }
+        }
+    ]
+}
+====================================================

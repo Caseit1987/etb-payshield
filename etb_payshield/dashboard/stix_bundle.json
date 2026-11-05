@@ -1,0 +1,40 @@
+{
+    "type": "bundle",
+    "id": "bundle--70d81ddf-29d9-475a-9f2a-ac26880d7876",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--122d3c7e-699b-483b-8464-092d18ad2baa",
+            "created": "2026-11-05T10:26:00.019Z",
+            "modified": "2026-11-05T10:26:00.019Z",
+            "name": "ETB LayerZero Intercept: Zero-Click Ingestion Pipeline Active",
+            "description": "Anomalous transactional telemetry structure neutralized at the system boundary gate.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[network-traffic:dst_port = 8080]",
+            "pattern_type": "stix",
+            "valid_from": "2026-11-05T10:26:00.019Z"
+        },
+        {
+            "type": "observed-data",
+            "spec_version": "2.1",
+            "id": "observed-data--6420edbc-5ce5-4703-9823-e641183cd8d7",
+            "created": "2026-11-05T10:26:00.019Z",
+            "modified": "2026-11-05T10:26:00.019Z",
+            "first_observed": "2026-11-05T10:26:00.019Z",
+            "last_observed": "2026-11-05T10:26:00.019Z",
+            "number_observed": 1,
+            "objects": {
+                "0": {
+                    "type": "file",
+                    "name": "raw_transaction_payload.json",
+                    "hashes": {
+                        "SHA-256": "a86ae89d29c5c0bc473895cbc9ccc628a6919e027edd2a497a7c94aca54e335b"
+                    }
+                }
+            }
+        }
+    ]
+}

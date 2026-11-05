@@ -1,0 +1,31 @@
+ETB PayShield — PayPal Sandbox live run, Windows, 2026-11-05
+Run from: C:\Users\casei\Desktop\etb-payshield-public-repo\
+Command: python etb_payshield/run_tests.py | Tee-Object -FilePath sandbox_run_log.txt
+Credentials: PAYPAL_CLIENT_ID / PAYPAL_CLIENT_SECRET via PowerShell env vars only (not in this log, not in the repo)
+
+[*] Automation Step A: Launching unauthorized simulation string...
+[?] Success: Gate actively blocked request with HTTP Status Code: 403
+
+[*] Automation Step A2: Authenticated injection payload (valid key, malicious body)...
+[?] Success: Gate blocked injection payload with HTTP Status Code: 403
+    Violations: ["injection_pattern in field 'note'"]
+
+[*] Automation Step B: PayPal Sandbox order -> gate...
+[*] PayPal Sandbox: creating order via Orders API...
+[+] PayPal Sandbox order created: 42V51277WU110645W (status: CREATED)
+[+] PayPal Sandbox order re-fetched: status=CREATED amount=149.00 USD
+[*] Step B transaction is a real Sandbox order: 42V51277WU110645W
+[?] Success: Gate successfully passed telemetry array. Response: Gateway Verified (HTTP 200).
+
+[*] Automation Step C: Triggering out-of-band AI synthesis engine...
+[*] Processing threat telemetry through AppSec AI layer...
+[!] Ollama unavailable (TimeoutError); using deterministic fallback derived from gate events.
+[+] Consolidated AI Compliance Report generated safely at: dashboard\ai_compliance_report.json
+
+Report: 2 blocked / 1 verified
+  telemetry: transaction_id 42V51277WU110645W, amount 149.00, status AUTOMATION_STREAMED
+  ai_compliance_insights.analysis_source: deterministic_fallback_offline
+  STIX bundle SHA-256: a86ae89d29c5c0bc473895cbc9ccc628a6919e027edd2a497a7c94aca54e335b
+  (same as the verified format-only run — the blocked injection payload is identical)
+
+Conclusion: PayPal Sandbox Orders API integration verified live on Windows, 2026-11-05.

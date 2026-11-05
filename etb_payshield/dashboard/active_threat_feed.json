@@ -1,0 +1,6 @@
+{
+    "transaction_id": "PAYPAL-TX-AUTO-777",
+    "amount": "149.00",
+    "status": "AUTOMATION_STREAMED",
+    "telemetry_class": "Zero-Click Ingestion Pipeline Active"
+}

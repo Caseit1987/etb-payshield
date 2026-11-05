@@ -1,0 +1,23 @@
+{
+    "telemetry": {
+        "transaction_id": "PAYPAL-TX-AUTO-777",
+        "amount": "149.00",
+        "status": "AUTOMATION_STREAMED",
+        "telemetry_class": "Zero-Click Ingestion Pipeline Active"
+    },
+    "gate_summary": {
+        "blocked_count": 2,
+        "verified_count": 1,
+        "blocked_reasons": [
+            "missing_or_invalid_api_key",
+            "payload_validation_failed"
+        ],
+        "stix_bundle": "dashboard/stix_bundle.json"
+    },
+    "ai_compliance_insights": {
+        "executive_summary": "2 request(s) blocked at the LayerZero gate (missing_or_invalid_api_key, payload_validation_failed); 1 legitimate transaction(s) verified, most recent PAYPAL-TX-AUTO-777 amount 149.00.",
+        "severity_level": "HIGH",
+        "impact_analysis": "Blocked requests never reached internal transaction state. Verified traffic passed API-key, JSON-shape, amount-range and injection-pattern checks at the boundary.",
+        "analysis_source": "deterministic_fallback_offline"
+    }
+}
