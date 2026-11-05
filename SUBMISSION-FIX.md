@@ -91,7 +91,9 @@ code to test.
    Save that run's log — it is the PayPal evidence.
 3. Then paste the "verified against live Sandbox" sentence, and
    re-record the demo video if the video is meant to show the
-   Sandbox path (the current 68s video is the format-only run).
+   Sandbox path — done 2026-11-05: the demo video now shows the live
+   Sandbox run (order 39Q34089QY7990S36; see
+   sandbox_run_log_2026-11-05_rerecord.txt).
 This is the only option that actually answers Kenneth's second
 point — and the hackathon's own rule: PayPal must be used
 meaningfully and centrally, not just as a payload format.

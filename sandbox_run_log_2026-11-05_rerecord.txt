@@ -1,0 +1,43 @@
+ETB PayShield — live Sandbox re-record run log
+Recorded on Justin's Windows machine, 2026-11-05 ~06:49 CST.
+Transcribed from the recorded run's on-screen output (video:
+https://www.youtube.com/watch?v=Ww88NIZ9w5U).
+
+Note on timestamps: the machine's own clock read ~11:49 UTC in the
+run output while the actual time was ~12:49 UTC — the Windows clock
+is about an hour behind (likely still on daylight time). Order IDs,
+statuses, amounts, and decisions below are as shown on screen.
+
+Run: python etb_payshield/run_tests.py
+(with PAYPAL_CLIENT_ID / PAYPAL_CLIENT_SECRET set from the Caseit2u
+Sandbox app; credentials are env vars only, never in the repo)
+
+- Gate ready (GET /health poll).
+- Step A: unauthorized request -> 403
+  "[?] Success: Gate actively blocked request with HTTP Status Code: 403"
+- Step A2: authenticated injection payload (valid key, malicious body)
+  -> 403
+  "Violations: ['injection_pattern in field 'note'']"
+- Step B: PayPal Sandbox order -> gate
+  "[*] PayPal Sandbox: creating order via Orders API..."
+  "PayPal Sandbox order created: 39Q34089QY7990S36 (status: CREATED)"
+  "PayPal Sandbox order re-fetched: status=CREATED, amount=149.00 USD"
+  "[*] Step B transaction is a real Sandbox order: 39Q34089QY7990S36"
+  "[?] Success: Gate successfully passed telemetry array. Response:
+  Gateway Verified (HTTP 200)."
+- Step C: AI compliance report
+  "Ollama unavailable (TimeoutError): using deterministic fallback
+  derived from gate events."
+  "analysis_source: deterministic_fallback_offline"
+  Report: 2 blocked / 1 verified.
+  Executive summary: "2 request(s) blocked at the LayerZero gate
+  (missing or invalid api_key, payload_validation_failed); 1 legitimate
+  transaction(s) verified: 39Q34089QY7990S36 amount 149.00"
+- STIX 2.1 bundle for the blocked event (dashboard/stix_bundle.json):
+  blocked payload SHA-256
+  a86ae89d29c5c0bc473895cbc9ccc628a6919e027edd2a497a7c94aca54e335b
+  (same blocked injection payload as the earlier verified run)
+
+Result: A 403 / A2 403 / B 200 Verified, report 2 blocked / 1 verified.
+This is the second live Sandbox order verified by the gate; the first
+was 42V51277WU110645W (see sandbox_run_log_2026-11-05.txt).

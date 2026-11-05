@@ -107,8 +107,9 @@ keeps the report honest about what was actually blocked and verified.
 ### What's next for ETB PayShield
 
 Expand the dashboard view of blocked vs. verified events for SOC
-review, and re-record the demo video so it shows the live Sandbox
-path (the current video is the format-only run). STIX output follows
+review. The demo video now shows the live Sandbox path: Step B
+creates a real Sandbox order (39Q34089QY7990S36, CREATED, $149.00
+USD) and the gate verifies it. STIX output follows
 the STIX 2.1 bundle structure but has not been run through an
 external STIX validator; the n8n blueprint is carried over
 unexecuted.
