@@ -106,12 +106,12 @@ keeps the report honest about what was actually blocked and verified.
 
 ### What's next for ETB PayShield
 
-Verify the PayPal Sandbox client against live Sandbox and feed a
-real Sandbox order ID and amount through the gate as the verified
-transaction. Then expand the dashboard view of blocked vs. verified
-events for SOC review. STIX output follows the STIX 2.1 bundle
-structure but has not been run through an external STIX validator;
-the n8n blueprint is carried over unexecuted.
+Expand the dashboard view of blocked vs. verified events for SOC
+review, and re-record the demo video so it shows the live Sandbox
+path (the current video is the format-only run). STIX output follows
+the STIX 2.1 bundle structure but has not been run through an
+external STIX validator; the n8n blueprint is carried over
+unexecuted.
 
 ### Verified results (for the submission description)
 
@@ -130,7 +130,7 @@ python, powershell, json, stix, api, automation, ai, paypal
 ## Try it out (fix this — do not leave as LinkedIn)
 
 Replace the current `www.linkedin.com` link with:
-`<your public GitHub repo URL>`
+`https://github.com/Caseit1987/etb-payshield`
 
 The repo must be public, with `LICENSE` (MIT) at the root and
 `README.md` with the run instructions (`python
